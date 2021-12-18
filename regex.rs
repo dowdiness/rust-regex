@@ -24,7 +24,7 @@ enum Event {
 //   }
 // }
 
-fn next(state: State, event: Event) -> State {
+fn next_state(state: State, event: Event) -> State {
   match state {
     State::Locked => match event {
       Event::Push => State::Locked,
@@ -44,10 +44,10 @@ fn main() {
   for line in io::stdin().lock().lines() {
     match line.unwrap().as_str() {
       "coin" => {
-        state = next(state, Event::Coin);
+        state = next_state(state, Event::Coin);
       },
       "push" => {
-        state = next(state, Event::Push);
+        state = next_state(state, Event::Push);
       },
       "quit" => {
         return
